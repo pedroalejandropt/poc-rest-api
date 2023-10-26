@@ -1,0 +1,30 @@
+name: Terraform Deploy
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  terraform:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: configure aws credentials
+        uses: aws-actions/configure-aws-credentials@v2
+        with:
+          role-to-assume: ${{ secrets.AWS_ROLE }}
+          aws-region: us-east-1
+
+      - name: Initialize Terraform
+        uses: actions/github-script@v5
+        with:
+          script: |
+            terraform init -backend-config="bucket=https://tf-personal-states.s3.amazonaws.com/poc"
+
+      - name: Plan Terraform changes
+        run: terraform plan
+
+      - name: Apply Terraform changes
+        run: terraform apply -input=false -auto-approve
