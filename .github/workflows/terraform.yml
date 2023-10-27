@@ -26,13 +26,16 @@ jobs:
           aws-region: us-east-1
 
       - name: Initialize Terraform
+        working-directory: infra
         shell: bash
         run: terraform init -backend-config="bucket=tf-personal-states"
 
       - name: Plan Terraform changes
+        working-directory: infra
         shell: bash
         run: terraform plan
 
       - name: Apply Terraform changes
+        working-directory: infra
         shell: bash
         run: terraform apply -input=false -auto-approve
