@@ -26,13 +26,13 @@ jobs:
           aws-region: us-east-1
 
       - name: Initialize Terraform
-        uses: actions/github-script@v5
-        with:
-          script: |
-            terraform init -backend-config="bucket=tf-personal-states"
+        shell: bash
+        run: terraform init -backend-config="bucket=tf-personal-states"
 
       - name: Plan Terraform changes
+        shell: bash
         run: terraform plan
 
       - name: Apply Terraform changes
+        shell: bash
         run: terraform apply -input=false -auto-approve
