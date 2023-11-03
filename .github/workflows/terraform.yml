@@ -5,7 +5,7 @@ on:
     branches: [main]
 
 concurrency: 
-  group: ${{ github.workflow }}
+  group: ${{ github.workflow }}-deploy-tf
   cancel-in-progress: true
 
 permissions:
