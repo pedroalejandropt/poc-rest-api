@@ -47,16 +47,16 @@ class SofttekService {
     
     getSofttekById = async (req: any) => {
         try {
-    
-            let softtek = await softteks.filter((x: any) => x.id == req.params.id);
+            const softtekId = req.queryStringParameters ? req.queryStringParameters.sofftekId : null;
+            let softtek = await softteks.filter((x: any) => x.id == softtekId);
     
             if (softtek.length == 1) {
                 return {
                     statusCode: 200,
-                    body: {
-                        'message': `Sofftek with Id ${req.params.id} Fetched Successfully`,
+                    body: JSON.stringify({
+                        'message': `Sofftek with Id ${softtekId} Fetched Successfully`,
                         'data': softtek
-                    }
+                    })
                 };
             }
     
@@ -85,23 +85,23 @@ class SofttekService {
             if (name === undefined || name === '') {
                 return {
                     statusCode: 200,
-                    body: {
+                    body: JSON.stringify({
                         'description': 'Name is required',
                         'field': 'name'
-                    }
+                    })
                 };
             }
     
             let nameExist = await (softteks.filter((x: any) => x.name == name).length > 0) ? true : false;
-    
+            
             if (nameExist) {
                 return {
                     statusCode: 409,
-                    body: {
+                    body: JSON.stringify({
                         'code': 'ENTITY_ALREAY_EXISTS',
                         'description': 'Name Already Exists',
                         'field': 'name'
-                    }
+                    })
                 };
             }
     
@@ -113,15 +113,13 @@ class SofttekService {
                 created_date: new Date(),
                 deleted_date: '0001-01-01T00:00:00+4:00'
             }
-    
             softteks.push(temp);
     
             return {
                 statusCode: 200,
-                body: {
-                    'code': 'BAD_REQUEST_ERROR',
+                body: JSON.stringify({
                     'description': `Softtek ${name} was created!`
-                }
+                })
             };
     
         } catch (error) {
@@ -131,9 +129,12 @@ class SofttekService {
     
     updateSofttek = async (req: any) => {
         try {
-    
-            const softtekId = req.params.id;
-    
+            const softtekId = req.queryStringParameters ? req.queryStringParameters.softtekId : null;
+            console.log(req);
+            
+            console.log(softtekId);
+            
+
             const {
                 name,
                 description
@@ -146,10 +147,10 @@ class SofttekService {
             if (!softtekExist) {
                 return {
                     statusCode: 404,
-                    body: {
+                    body: JSON.stringify({
                         'code': 'BAD_REQUEST_ERROR',
                         'description': 'No softtek found in the system'
-                    }
+                    })
                 };
             }
     
@@ -165,10 +166,9 @@ class SofttekService {
             if (softtekIndex || softtekIndex == 0) {
                 return {
                     statusCode: 200,
-                    body: {
-                        'code': 'BAD_REQUEST_ERROR',
+                    body: JSON.stringify({
                         'description': `Softtek ${name} was updated!`
-                    }
+                    })
                 };
             } else {
                 throw new Error('Something went worng');
@@ -185,17 +185,16 @@ class SofttekService {
     
             let softtekIndex = await softteks.findIndex(((x: any) => x.id == softtekId));
             softteks[softtekIndex].status = 'disabled';
-            //softteks[softtekIndex].deleted_date = await new Date();
     
             if (softtekIndex || softtekIndex == 0) {
                 console.log("Softtek was deleted!");
             } else {
                 return {
                     statusCode: 404,
-                    body: {
+                    body: JSON.stringify({
                         'code': 'BAD_REQUEST_ERROR',
                         'description': 'No softtek found in the system'
-                    }
+                    })
                 };
             }
     
