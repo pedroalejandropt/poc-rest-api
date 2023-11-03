@@ -1,4 +1,8 @@
+import { InternalServerError } from "./http/exceptions/internal-server-error.exception";
+import { NotFoundException } from "./http/exceptions/not-found.exception";
 import controllers from "./routes/index";
+
+console.log("Lambda started");
 
 exports.handler = async function(event: any) : Promise<any> {
     let response;
@@ -9,16 +13,10 @@ exports.handler = async function(event: any) : Promise<any> {
             response = await controller.handle(event);
         }
         else {
-            response = {
-                statusCode: 404,
-                body: JSON.stringify({ message: 'Not Found!'})
-            };
+            response = new NotFoundException(`Cannot ${event.httpMethod} ${event.path}`);
         }
     } catch (error) {
-        response = {
-            statusCode: 500,
-            body: JSON.stringify({ message: 'Internal Server Error ' + error })
-        };
+        response = new InternalServerError((error as Error).message);
     }
 
     return response;
