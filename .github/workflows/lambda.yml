@@ -12,27 +12,25 @@ permissions:
   contents: read
 
 jobs:
-  terraform:
+  lambda-deploy:
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v3
+    
       - name: Install Dependencies
         working-directory: lambda
-        shell: bash
         run: npm ci
 
       - name: Build Application
         working-directory: lambda
-        shell: bash
         run: npm run build
 
       - name: Test Application
         working-directory: lambda
-        shell: bash
         run: npm test
 
       - name: Zip Lambda function
         working-directory: lambda/dist
-        shell: bash
         run: |
           zip -r lambda-function.zip .
           mkdir ../artifacts
@@ -52,5 +50,4 @@ jobs:
 
       - name: Deploy Function
         working-directory: lambda/artifacts
-        shell: bash
         run: aws lambda update-function-code --function-name poc-rest-api --zip-file fileb://lambda-function.zip --publish --region us-east-1
