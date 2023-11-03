@@ -5,7 +5,7 @@
   "main": "server.js",
   "scripts": {
     "server": "nodemon ./src/server.js",
-    "build": "esbuild ./src/* --bundle --minify --sourcemap --platform=node --target=node16.14 --outdir=dist",
+    "build": "esbuild ./src/server.ts --bundle --minify --sourcemap --platform=node --target=node18 --outdir=dist",
     "lint": "tsc",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
