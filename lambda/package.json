@@ -16,6 +16,7 @@
     "typescript": "^5.2.2"
   },
   "dependencies": {
-    "@types/aws-lambda": "^8.10.125"
+    "@types/aws-lambda": "^8.10.125",
+    "esbuild": "^0.19.5"
   }
 }
