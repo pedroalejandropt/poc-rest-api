@@ -1,6 +1,7 @@
 import type { APIGatewayProxyEvent, APIGatewayProxyResult } from "aws-lambda";
 import controllers from "./routes/index";
 import { extractParameters } from "./utils";
+import HttpResponse from "./models/HttpResponse";
 
 exports.handler = async function(event: APIGatewayProxyEvent) : Promise<APIGatewayProxyResult> {
     let response;
@@ -12,16 +13,10 @@ exports.handler = async function(event: APIGatewayProxyEvent) : Promise<APIGatew
             response = await controller.handle(event);
         }
         else {
-            response = {
-                statusCode: 404,
-                body: JSON.stringify({ message: 'Not Found!'})
-            };
+            response = new HttpResponse(404, { message: 'Not Found!' });
         }
-    } catch (error) {
-        response = {
-            statusCode: 500,
-            body: JSON.stringify({ message: 'Internal Server Error ' + error })
-        };
+    } catch (error: any) {
+        response = new HttpResponse(500, { message: 'Internal Server Error ' + error.message });
     }
     return response;
 };
