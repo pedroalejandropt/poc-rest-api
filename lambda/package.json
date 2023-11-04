@@ -5,7 +5,7 @@
   "main": "server.js",
   "scripts": {
     "clean": "rimraf ./dist",
-    "bundle": "esbuild ./src/* --bundle --minify --sourcemap --platform=node --target=node18 --outdir=dist --legal-comments=none",
+    "bundle": "esbuild ./src/server.ts --bundle --minify --sourcemap --platform=node --target=node18 --outdir=dist --legal-comments=none",
     "build": "npm run clean && npm run bundle",
     "lint": "tsc",
     "test": "jest"
