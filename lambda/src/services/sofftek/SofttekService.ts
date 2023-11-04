@@ -62,9 +62,9 @@ class SofttekService {
     
             return {
                 statusCode: 200,
-                body: {
+                body: JSON.stringify({
                     'description': 'No softtek found in the system'
-                }
+                })
             };
     
         } catch (error) {
@@ -84,7 +84,7 @@ class SofttekService {
     
             if (name === undefined || name === '') {
                 return {
-                    statusCode: 200,
+                    statusCode: 400,
                     body: JSON.stringify({
                         'description': 'Name is required',
                         'field': 'name'
@@ -130,17 +130,22 @@ class SofttekService {
     updateSofttek = async (req: any) => {
         try {
             const softtekId = req.queryStringParameters ? req.queryStringParameters.softtekId : null;
-            console.log(req);
-            
-            console.log(softtekId);
-            
-
             const {
                 name,
                 description
             } = JSON.parse(req.body || '{}');
     
             console.log(`${name} ${description}`);
+
+            if (name === undefined || name === '') {
+                return {
+                    statusCode: 400,
+                    body: JSON.stringify({
+                        'description': 'Name is required',
+                        'field': 'name'
+                    })
+                };
+            }
     
             let softtekExist = await (softteks.filter((x: any) => x.id == softtekId).length > 0) ? true : false;
     
