@@ -13,10 +13,10 @@
   "license": "ISC",
   "devDependencies": {
     "@types/node": "^20.8.8",
+    "esbuild": "^0.19.5",
     "typescript": "^5.2.2"
   },
   "dependencies": {
-    "@types/aws-lambda": "^8.10.125",
-    "esbuild": "^0.19.5"
+    "@types/aws-lambda": "^8.10.125"
   }
 }
