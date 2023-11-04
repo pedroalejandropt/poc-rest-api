@@ -4,7 +4,7 @@
   "description": "REST API POC",
   "main": "server.js",
   "scripts": {
-    "server": "nodemon ./src/server.js",
+    "server": "node ./dist/server.js",
     "build": "esbuild ./src/server.ts --bundle --minify --sourcemap --platform=node --target=node18 --outdir=dist",
     "lint": "tsc",
     "test": "echo \"Error: no test specified\""
