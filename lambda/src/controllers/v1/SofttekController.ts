@@ -2,9 +2,9 @@ import SofttekService from '../../services/sofftek/SofttekService';
 
 const handle = async (event: any) => {
     const method = event.httpMethod;
-    const softtekId = event.queryStringParameters ? event.queryStringParameters.sofftekId : null;
+    const softtekId = event.queryStringParameters ? event.queryStringParameters.softtekId : null;
     const _service = new SofttekService();
-
+    
     switch (method) {
         case 'GET':
             if (softtekId) {

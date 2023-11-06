@@ -3,9 +3,12 @@ name: Terraform Deploy
 on:
   push:
     branches: [main]
+    paths:
+      - 'infra/**'
+      - '.github/workflows/terraform.yml'
 
 concurrency: 
-  group: ${{ github.workflow }}
+  group: ${{ github.workflow }}-deploy-tf
   cancel-in-progress: true
 
 permissions:

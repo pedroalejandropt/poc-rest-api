@@ -10,3 +10,5 @@
 *.tfstate
 *.tfstate.*
 .terraform.lock.hcl
+
+**/dist

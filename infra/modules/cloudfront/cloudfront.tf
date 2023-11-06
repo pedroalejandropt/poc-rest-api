@@ -30,7 +30,7 @@ resource "aws_cloudfront_distribution" "cloudfront_distribution" {
         forward = "none"
       }
 
-      query_string = false
+      query_string = true
     }
   }
 
