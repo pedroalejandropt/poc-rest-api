@@ -17,7 +17,7 @@ resource "aws_iam_role_policy_attachment" "lambda_logs" {
 }
 
 resource "aws_iam_role" "iam_for_lambda" {
-  name               = "iam_lambda"
+  name               = "iam_lambda-${var.name}"
   assume_role_policy = data.aws_iam_policy_document.assume_role.json
 }
 
