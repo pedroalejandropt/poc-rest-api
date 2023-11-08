@@ -11,7 +11,7 @@ module "lambda_poc" {
 module "lambda_net_poc" {
   source  = "../../modules/lambda"
   name    = "poc-net-rest-api"
-  handler = "WebApplication1"
+  handler = "poc-net-api"
   runtime = "dotnet6"
 }
 
