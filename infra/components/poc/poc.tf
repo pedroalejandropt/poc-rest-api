@@ -46,7 +46,7 @@ module "cloudfront_poc" {
       allowed_methods             = null
       cache_policy_id             = data.aws_cloudfront_cache_policy.cloudfront_cache_policy_managed_caching_disabled.id
       origin_request_policy_id    = null
-      path_pattern                = "/todo"
+      path_pattern                = "/todo*"
       target_origin_id            = module.api_gateway_net_poc.id
       lambda_function_association = []
       function_association        = []
