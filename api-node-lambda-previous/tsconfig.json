@@ -4,7 +4,7 @@
       "esModuleInterop": true,
       "skipLibCheck": true,
       "target": "es2022",
-      "verbatimModuleSyntax": true,
+      "verbatimModuleSyntax": false,
       "allowJs": true,
       "resolveJsonModule": true,
       "moduleDetection": "force",
@@ -16,6 +16,7 @@
       "module": "ESNext",
       "noEmit": true,
       /* If your code doesn't run in the DOM: */
-      "lib": ["es2022"]
+      "lib": ["es2022"],
+      "strictNullChecks": false,
     }
   }
