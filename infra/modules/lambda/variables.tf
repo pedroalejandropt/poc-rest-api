@@ -25,5 +25,5 @@ variable "timeout" {
 
 variable "tags" {
   type    = map(string)
-  default = []
+  default = {}
 }

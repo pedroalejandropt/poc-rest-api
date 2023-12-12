@@ -6,7 +6,7 @@ module "lambda_poc" {
   source  = "../../modules/lambda"
   name    = "poc-rest-api"
   handler = "server.handler"
-  tags = [ "softtek-poc" ]
+  tags    = ["softtek-poc"]
 }
 
 module "lambda_net_poc" {
@@ -14,21 +14,21 @@ module "lambda_net_poc" {
   name    = "poc-net-rest-api"
   handler = "poc-net-api"
   runtime = "dotnet6"
-  tags = [ "softtek-poc" ]
+  tags    = ["softtek-poc"]
 }
 
 module "api_gateway_poc" {
   source = "../../modules/api_gateway"
   name   = "poc-rest-api"
   lambda = module.lambda_poc
-  tags = [ "softtek-poc" ]
+  tags   = { env = "softtek-poc" }
 }
 
 module "api_gateway_net_poc" {
   source = "../../modules/api_gateway"
   name   = "poc-net-rest-api"
   lambda = module.lambda_net_poc
-  tags = [ "softtek-poc" ]
+  tags   = { env = "softtek-poc" }
 }
 
 module "cloudfront_poc" {
@@ -36,7 +36,7 @@ module "cloudfront_poc" {
   region         = "us-east-1"
   description    = "POC API Rest"
   origins_custom = [module.api_gateway_poc, module.api_gateway_net_poc]
-  tags = [ "softtek-poc" ]
+  tags           = { env = "softtek-poc" }
 
   default_cache_behavior = {
     cache_policy_id             = data.aws_cloudfront_cache_policy.cloudfront_cache_policy_managed_caching_disabled.id

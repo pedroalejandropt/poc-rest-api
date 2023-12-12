@@ -10,5 +10,5 @@ variable "lambda" {
 
 variable "tags" {
   type    = map(string)
-  default = []
+  default = {}
 }
