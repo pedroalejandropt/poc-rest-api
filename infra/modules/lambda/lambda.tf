@@ -31,6 +31,7 @@ resource "aws_lambda_function" "lambda" {
   package_type  = "Zip"
   runtime       = var.runtime
   timeout       = var.timeout
+  tags = var.tags
 
   environment {
     variables = {

@@ -34,3 +34,8 @@ variable "description" {
     type = string
     nullable = false
 }
+
+variable "tags" {
+  type    = map(string)
+  default = []
+}

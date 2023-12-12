@@ -1,6 +1,7 @@
 resource "aws_apigatewayv2_api" "api_gateway" {
   name          = "${var.name}-api"
   protocol_type = "HTTP"
+  tags = var.tags
 }
 
 resource "aws_apigatewayv2_integration" "api_gateway_integration" {

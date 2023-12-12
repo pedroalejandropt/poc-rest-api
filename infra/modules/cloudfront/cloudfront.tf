@@ -1,6 +1,7 @@
 resource "aws_cloudfront_distribution" "cloudfront_distribution" {
   comment = var.description
   price_class = "PriceClass_100"
+  tags = var.tags
 
   dynamic "origin" {
     for_each = var.origins_custom
