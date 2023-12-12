@@ -1,7 +1,9 @@
 /node_modules
 */node_modules
 /.vs
+*/.vs
 /.vscode
+*/.vscode
 
 # Local .terraform directories
 **/.terraform/*
@@ -12,3 +14,8 @@
 .terraform.lock.hcl
 
 **/dist
+
+publish
+
+**/bin
+**/obj
