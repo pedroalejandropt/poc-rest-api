@@ -34,6 +34,7 @@ jobs:
     
     - name: Upload Artefact
       uses: actions/upload-artifact@v3
+      working-directory: api-net-lambda
       with:
         name: artifact
         path: artifacts
@@ -45,6 +46,7 @@ jobs:
     steps:
     - name: Download Artefact
       uses: actions/download-artifact@v3
+      working-directory: api-net-lambda
       with:
         name: artifact
     
