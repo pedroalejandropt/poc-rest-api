@@ -1,0 +1,53 @@
+name: Lambda Node Deploy
+
+on:
+  workflow_dispatch:
+
+concurrency: 
+  group: ${{ github.workflow }}-deploy-lambda-node
+  cancel-in-progress: true
+
+permissions:
+  id-token: write
+  contents: read
+
+jobs:
+  lambda-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+    
+      - name: Install Dependencies
+        working-directory: lambda
+        run: npm ci
+
+      - name: Build Application
+        working-directory: lambda
+        run: npm run build
+
+      - name: Test Application
+        working-directory: lambda
+        run: npm test
+
+      - name: Zip Lambda function
+        working-directory: lambda/dist
+        run: |
+          zip -r lambda-function.zip .
+          mkdir ../artifacts
+          mv lambda-function.zip ../artifacts/lambda-function.zip
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: lambda-function.zip
+          path: lambda@edge/artifacts
+
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v3
+        with:
+          role-to-assume: ${{ secrets.AWS_ROLE }}
+          aws-region: us-east-1
+
+      - name: Deploy Function
+        working-directory: lambda/artifacts
+        run: aws lambda update-function-code --function-name poc-rest-api --zip-file fileb://lambda-function.zip --publish --region us-east-1
