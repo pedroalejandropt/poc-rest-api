@@ -30,7 +30,7 @@ jobs:
       ##  run: npm test
 
       - name: Zip Lambda function
-        working-directory: lambda/dist
+        working-directory: api-node-lambda/dist
         run: |
           zip -r lambda-function.zip .
           mkdir ../artifacts
@@ -49,5 +49,5 @@ jobs:
           aws-region: us-east-1
 
       - name: Deploy Function
-        working-directory: lambda/artifacts
+        working-directory: api-node-lambda/artifacts
         run: aws lambda update-function-code --function-name poc-rest-api --zip-file fileb://lambda-function.zip --publish --region us-east-1
