@@ -18,19 +18,19 @@ jobs:
       - uses: actions/checkout@v3
     
       - name: Install Dependencies
-        working-directory: lambda
+        working-directory: api-node-lambda-previous
         run: npm ci
 
       - name: Build Application
-        working-directory: lambda
+        working-directory: api-node-lambda-previous
         run: npm run build
 
       - name: Test Application
-        working-directory: lambda
+        working-directory: api-node-lambda-previous
         run: npm test
 
       - name: Zip Lambda function
-        working-directory: lambda/dist
+        working-directory: api-node-lambda-previous/dist
         run: |
           zip -r lambda-function.zip .
           mkdir ../artifacts
