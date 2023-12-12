@@ -1,8 +1,10 @@
+import { InternalServerError } from "./http/exceptions/internal-server-error.exception";
+import { NotFoundException } from "./http/exceptions/not-found.exception";
 import type { APIGatewayProxyEvent, APIGatewayProxyResult } from "aws-lambda";
 import controllers from "./routes/index";
 import { extractParameters } from "./utils";
-import HttpResponse from "./models/HttpResponse";
 
+console.log("Lambda started");
 exports.handler = async function(event: APIGatewayProxyEvent) : Promise<APIGatewayProxyResult> {
     let response;
     try {
@@ -13,14 +15,13 @@ exports.handler = async function(event: APIGatewayProxyEvent) : Promise<APIGatew
             response = await controller.handle(event);
         }
         else {
-            response = new HttpResponse(404, { message: 'Not Found!' });
+            response = new NotFoundException(`Cannot ${event.httpMethod} ${event.path}`);
         }
-    } catch (error: any) {
-        response = new HttpResponse(500, { message: 'Internal Server Error ' + error.message });
+    } catch (error) {
+        response = new InternalServerError((error as Error).message);
     }
     return response;
 };
-
 // handler({
 //     path: '/api/v1/softtek', 
 //     httpMethod: 'GET', 
