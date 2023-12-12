@@ -6,7 +6,7 @@ module "lambda_poc" {
   source  = "../../modules/lambda"
   name    = "poc-rest-api"
   handler = "server.handler"
-  tags    = ["softtek-poc"]
+  tags    = { env = "softtek-poc" }
 }
 
 module "lambda_net_poc" {
@@ -14,7 +14,7 @@ module "lambda_net_poc" {
   name    = "poc-net-rest-api"
   handler = "poc-net-api"
   runtime = "dotnet6"
-  tags    = ["softtek-poc"]
+  tags    = { env = "softtek-poc" }
 }
 
 module "api_gateway_poc" {
