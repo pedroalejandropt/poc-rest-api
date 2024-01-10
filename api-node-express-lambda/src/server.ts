@@ -2,10 +2,10 @@ import type { APIGatewayProxyEvent, APIGatewayProxyResult } from "aws-lambda";
 import { app } from "./config/index";
 
 const application = app();
+application.create();
+application.start();
 
 exports.handler = (event: APIGatewayProxyEvent, context: any) => {
-    application.create();
-    application.start();
     const response = application.handler(event, context);
     return response;
 };
