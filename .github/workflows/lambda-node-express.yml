@@ -50,4 +50,4 @@ jobs:
 
       - name: Deploy Function
         working-directory: api-node-express-lambda/artifacts
-        run: aws lambda update-function-code --function-name poc-rest-api --zip-file fileb://lambda-function.zip --publish --region us-east-1
+        run: aws lambda update-function-code --function-name poc-rest-api-express --zip-file fileb://lambda-function.zip --publish --region us-east-1

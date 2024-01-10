@@ -9,6 +9,13 @@ module "lambda_poc" {
   tags    = { env = "softtek-poc" }
 }
 
+module "lambda_express_poc" {
+  source  = "../../modules/lambda"
+  name    = "poc-rest-api-express"
+  handler = "server.handler"
+  tags    = { env = "softtek-poc" }
+}
+
 module "lambda_net_poc" {
   source  = "../../modules/lambda"
   name    = "poc-net-rest-api"
