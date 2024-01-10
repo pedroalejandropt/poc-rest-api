@@ -1,4 +1,4 @@
-name: Lambda Node Deploy
+name: Lambda Node Express Deploy
 
 on:
   workflow_dispatch:
