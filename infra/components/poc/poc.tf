@@ -33,7 +33,7 @@ module "api_gateway_poc" {
 
 module "api_gateway_poc_express" {
   source = "../../modules/api_gateway"
-  name   = "poc-rest-api"
+  name   = "poc-rest-api-express"
   lambda = module.lambda_express_poc
   tags   = { env = "softtek-poc" }
 }
