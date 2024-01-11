@@ -24,16 +24,10 @@ function app() {
         }));
         
         // Set up routes
-        //routes.init(server);
         server.use("/", routes);
     };
 
     start = () => {
-        // let hostname = server.get('hostname'),
-        //     port = server.get('port');
-        // server.listen(port, function () {
-        //     console.log('Express server listening on - http://' + hostname + ':' + port);
-        // });
         server.listen(3000, function () {
             console.log('Express server listening on - http://localhost:3000');
         });
