@@ -86,6 +86,10 @@ class SofttekService {
     updateSofttek = async (req: any, res: any) => {
         try {
             const id = req.queryStringParameters ? req.queryStringParameters.id : null;
+            console.log(id);
+            console.log(req);
+            
+            
             const { name, description } = req.body || '{}';
             const softtek = new Softtek(name, description);
             const missing = await (softteks.filter((x: any) => x.id == id).length == 0) ? true : false;
