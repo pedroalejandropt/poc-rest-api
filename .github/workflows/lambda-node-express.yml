@@ -2,6 +2,11 @@ name: Lambda Node Express Deploy
 
 on:
   workflow_dispatch:
+  push: 
+    branches:
+      - "main"
+    paths:
+      - api-node-express-lambda/**  
 
 concurrency: 
   group: ${{ github.workflow }}-deploy-lambda-node-express

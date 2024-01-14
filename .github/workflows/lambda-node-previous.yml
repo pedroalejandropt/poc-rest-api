@@ -2,6 +2,11 @@ name: Lambda Node Previous Deploy
 
 on:
   workflow_dispatch:
+  push: 
+    branches:
+      - "main"
+    paths:
+      - api-node-lambda-previous/**  
 
 concurrency: 
   group: ${{ github.workflow }}-deploy-lambda-node
