@@ -60,8 +60,8 @@ class SofttekService {
     
     createSofttek = async (req: any, res: any) => {
         try {
-            const { name, description } = JSON.parse(req.body || '{}');
-            const softtek = new Softtek(name, description);    
+            const { name, description } = req.body || '{}';
+            const softtek = new Softtek(name, description);
             const duplicate = await (softteks.filter((x: any) => x.name == name).length > 0) ? true : false;
             
             if (duplicate) return res.status(404).json({ message: 'Sofftek already exists' }); 
@@ -86,7 +86,7 @@ class SofttekService {
     updateSofttek = async (req: any, res: any) => {
         try {
             const softtekId = req.queryStringParameters ? req.queryStringParameters.softtekId : null;
-            const { name, description } = JSON.parse(req.body || '{}');
+            const { name, description } = req.body || '{}';
             const softtek = new Softtek(name, description);
             const missing = await (softteks.filter((x: any) => x.id == softtekId).length == 0) ? true : false;
     
