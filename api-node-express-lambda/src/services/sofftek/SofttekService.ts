@@ -45,12 +45,12 @@ class SofttekService {
     
     getSofttekById = async (req: any, res: any) => {
         try {
-            const softtekId = req.queryStringParameters ? req.queryStringParameters.softtekId : null;
-            let softtek = await softteks.filter((x: any) => x.id == softtekId);
+            const id = req.queryStringParameters ? req.queryStringParameters.id : null;
+            let softtek = await softteks.filter((x: any) => x.id == id);
     
             if (softtek.length == 1) {
-                return res.status(200).json({ message: `Sofftek with Id ${softtekId} Fetched Successfully`, data: softtek });
-                //new HttpResponse(200, { message: `Sofftek with Id ${softtekId} Fetched Successfully`, data: softtek });
+                return res.status(200).json({ message: `Sofftek with Id ${id} Fetched Successfully`, data: softtek });
+                //new HttpResponse(200, { message: `Sofftek with Id ${id} Fetched Successfully`, data: softtek });
             } else return res.status(404).json({ message: 'No softtek found in the system' });
             //throw new Exception(404, 'No softtek found in the system');
         } catch (error: any) {
@@ -60,11 +60,11 @@ class SofttekService {
     
     createSofttek = async (req: any, res: any) => {
         try {
-            const { name, description } = JSON.parse(req.body || '{}');
-            const softtek = new Softtek(name, description);    
+            const { name, description } = req.body || '{}';
+            const softtek = new Softtek(name, description);
             const duplicate = await (softteks.filter((x: any) => x.name == name).length > 0) ? true : false;
             
-            if (duplicate) return res.status(404).json({ message: 'Sofftek already exists' }); 
+            if (duplicate) return res.status(409).json({ message: 'Sofftek already exists' }); 
             //throw new DuplicateException('Sofftek already exists')
     
             softteks.push({
@@ -85,15 +85,16 @@ class SofttekService {
     
     updateSofttek = async (req: any, res: any) => {
         try {
-            const softtekId = req.queryStringParameters ? req.queryStringParameters.softtekId : null;
-            const { name, description } = JSON.parse(req.body || '{}');
+            const id = req.params ? req.params.id : null;
+
+            const { name, description } = req.body || '{}';
             const softtek = new Softtek(name, description);
-            const missing = await (softteks.filter((x: any) => x.id == softtekId).length == 0) ? true : false;
+            const missing = await (softteks.filter((x: any) => x.id == id).length == 0) ? true : false;
     
             if (missing) return res.status(404).json({ message: 'No softtek found in the system' });
             //throw new Exception(404, 'No softtek found in the system');
     
-            const index = await softteks.findIndex(((x: any) => x.id == softtekId));
+            const index = await softteks.findIndex(((x: any) => x.id == id));
             softteks[index].name = softtek.name;
             softteks[index].description = softtek.description;
 
@@ -106,8 +107,8 @@ class SofttekService {
     
     deleteSofttek = async (req: any, res: any) => {
         try {
-            const softtekId = req.params.id;
-            const softtekIndex = await softteks.findIndex(((x: any) => x.id == softtekId));
+            const id = req.params.id;
+            const softtekIndex = await softteks.findIndex(((x: any) => x.id == id));
             softteks[softtekIndex].status = 'disabled';
     
             if (softtekIndex || softtekIndex == 0) {

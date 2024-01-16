@@ -2,6 +2,11 @@ name: Lambda .Net Deploy
 
 on:
   workflow_dispatch:
+  push: 
+    branches:
+      - "main"
+    paths:
+      - api-net-lambda/**
 
 concurrency: 
   group: ${{ github.workflow }}-deploy-lambda-net
