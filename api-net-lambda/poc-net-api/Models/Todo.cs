@@ -4,16 +4,16 @@ namespace POC.NET.API.Models
 {
     public class Todo
     {
-        public Todo(string title, string description, bool status)
+        public Todo(int id, string title, string description)
         {
-            Id = Guid.NewGuid();
+            Id = id;
             Title = title;
             Description = description;
             CreatedDate = new DateTime();
-            Status = status;
+            Status = true;
         }
 
-        public Guid Id { get; set; }
+        public int Id { get; set; }
         public string Title { get; set; }
         public string Description { get; set; }
         public DateTime CreatedDate { get; set; }

@@ -28,7 +28,7 @@ namespace POC.NET.API.Controllers
         }
 
         [HttpGet("{id}")]
-        public async Task<ActionResult<Todo>> GetBy(Guid id)
+        public async Task<ActionResult<Todo>> GetBy(int id)
         {
             try
             {
@@ -56,7 +56,7 @@ namespace POC.NET.API.Controllers
         }
 
         [HttpPut("{id}")]
-        public async Task<ActionResult> Put(Guid id, [FromBody] Todo todo)
+        public async Task<ActionResult> Put(int id, [FromBody] Todo todo)
         {
             try
             {
@@ -70,7 +70,7 @@ namespace POC.NET.API.Controllers
         }
 
         [HttpDelete("{id}")]
-        public async Task<ActionResult> Delete(Guid id)
+        public async Task<ActionResult> Delete(int id)
         {
             try
             {

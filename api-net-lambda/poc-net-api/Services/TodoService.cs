@@ -7,12 +7,19 @@ namespace POC.NET.API.Services
 {
     public class TodoService : ITodoService
     {
-        List<Todo> _todoList = new List<Todo>();
+        List<Todo> _todoList = new List<Todo>()
+        {
+            new Todo(1, "Note 1", "Description"),
+            new Todo(2, "Note 2", "Description"),
+            new Todo(3, "Note 3", "Description"),
+            new Todo(4, "Note 4", "Description"),
+        };
         public void Create(Todo todo)
         {
+            todo.Id = _todoList.Count;
             _todoList.Add(todo);
         }
-        public void Put(Guid id, Todo todo)
+        public void Put(int id, Todo todo)
         {
             Todo previousTodo = _todoList.FirstOrDefault(t => t.Id == id);
             if (previousTodo is null)
@@ -20,9 +27,10 @@ namespace POC.NET.API.Services
             
             previousTodo.Title = todo.Title;
             previousTodo.Description = todo.Description;
+            previousTodo.Status = todo.Status;
         }
 
-        public void Delete(Guid id)
+        public void Delete(int id)
         {
             Todo todo = _todoList.FirstOrDefault(t => t.Id == id);
             if (todo is null)
@@ -31,7 +39,7 @@ namespace POC.NET.API.Services
             todo.Status = false;
         }
 
-        public Todo GetBy(Guid id)
+        public Todo GetBy(int id)
         {
             Todo todo = _todoList.FirstOrDefault(t => t.Id == id);
             if (todo is null)
