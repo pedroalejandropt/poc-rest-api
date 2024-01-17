@@ -7,10 +7,10 @@ namespace POC.NET.API.Services
     public interface ITodoService
     {
         IEnumerable<Todo> List();
-        Todo GetBy(Guid id);
+        Todo GetBy(int id);
         void Create(Todo todo);
-        void Put(Guid id, Todo todo);
-        void Delete(Guid id);
+        void Put(int id, Todo todo);
+        void Delete(int id);
 
     }
 }
