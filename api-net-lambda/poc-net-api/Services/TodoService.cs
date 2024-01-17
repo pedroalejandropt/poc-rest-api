@@ -16,7 +16,7 @@ namespace POC.NET.API.Services
         };
         public void Create(Todo todo)
         {
-            todo.Id = _todoList.Count;
+            todo.Id = _todoList.Count + 1;
             _todoList.Add(todo);
         }
         public void Put(int id, Todo todo)
