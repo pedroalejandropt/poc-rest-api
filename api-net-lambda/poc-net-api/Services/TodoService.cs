@@ -27,7 +27,6 @@ namespace POC.NET.API.Services
             
             previousTodo.Title = todo.Title;
             previousTodo.Description = todo.Description;
-            previousTodo.Status = todo.Status;
         }
 
         public void Delete(int id)
