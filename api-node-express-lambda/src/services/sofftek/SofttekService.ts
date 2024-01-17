@@ -45,7 +45,7 @@ class SofttekService {
     
     getSofttekById = async (req: any, res: any) => {
         try {
-            const id = req.queryStringParameters ? req.queryStringParameters.id : null;
+            const id = req.params ? req.params.id : null;
             let softtek = await softteks.filter((x: any) => x.id == id);
     
             if (softtek.length == 1) {
