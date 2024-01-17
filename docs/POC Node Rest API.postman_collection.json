@@ -1,0 +1,162 @@
+{
+	"info": {
+		"_postman_id": "56f644d8-5dc3-4a3c-91cf-3da08d42cb2e",
+		"name": "POC Node Rest API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Get All Version 1",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://dnnsgopnz40fj.cloudfront.net/api/v1/softtek",
+					"protocol": "https",
+					"host": [
+						"dnnsgopnz40fj",
+						"cloudfront",
+						"net"
+					],
+					"path": [
+						"api",
+						"v1",
+						"softtek"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get All Version 2",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://dnnsgopnz40fj.cloudfront.net/api/v2/softtek",
+					"protocol": "https",
+					"host": [
+						"dnnsgopnz40fj",
+						"cloudfront",
+						"net"
+					],
+					"path": [
+						"api",
+						"v2",
+						"softtek"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get by Id",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://dnnsgopnz40fj.cloudfront.net/api/v1/softtek/1",
+					"protocol": "https",
+					"host": [
+						"dnnsgopnz40fj",
+						"cloudfront",
+						"net"
+					],
+					"path": [
+						"api",
+						"v1",
+						"softtek",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create Record",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\": \"Test record\",\n    \"description\": \"Test description\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://dnnsgopnz40fj.cloudfront.net/api/v1/softtek",
+					"protocol": "https",
+					"host": [
+						"dnnsgopnz40fj",
+						"cloudfront",
+						"net"
+					],
+					"path": [
+						"api",
+						"v1",
+						"softtek"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update Record",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\": \"Test record updated\",\n    \"description\": \"Test description\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://dnnsgopnz40fj.cloudfront.net/api/v1/softtek/4",
+					"protocol": "https",
+					"host": [
+						"dnnsgopnz40fj",
+						"cloudfront",
+						"net"
+					],
+					"path": [
+						"api",
+						"v1",
+						"softtek",
+						"4"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Record",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "https://dnnsgopnz40fj.cloudfront.net/api/v1/softtek/1",
+					"protocol": "https",
+					"host": [
+						"dnnsgopnz40fj",
+						"cloudfront",
+						"net"
+					],
+					"path": [
+						"api",
+						"v1",
+						"softtek",
+						"1"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
