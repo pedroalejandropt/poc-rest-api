@@ -22,7 +22,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name: Checkout Latest Code
-      uses: actions/checkout@v3
+      uses: actions/checkout@v4
     
     - name: Setup .NET
       uses: actions/setup-dotnet@v3
@@ -31,11 +31,11 @@ jobs:
     
     - name: Install Dependencies
       working-directory: api-net-lambda
-      run: dotnet restore --runtime linux-x64
+      run: dotnet restore
     
     - name: Build
       working-directory: api-net-lambda
-      run: dotnet publish --output artifacts --runtime linux-x64
+      run: dotnet publish --output artifacts --self-contained true
     
     - name: Upload Artefact
       uses: actions/upload-artifact@v3
