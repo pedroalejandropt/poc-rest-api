@@ -20,7 +20,7 @@ module "lambda_net_poc" {
   source  = "../../modules/lambda"
   name    = "poc-net-rest-api"
   handler = "poc-net-api"
-  runtime = "dotnet6"
+  runtime = "dotnet8"
   tags    = { env = "softtek-poc" }
 }
 
